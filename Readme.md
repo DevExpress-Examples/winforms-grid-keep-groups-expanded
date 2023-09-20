@@ -3,17 +3,34 @@
 [![](https://img.shields.io/badge/Open_in_DevExpress_Support_Center-FF7200?style=flat-square&logo=DevExpress&logoColor=white)](https://supportcenter.devexpress.com/ticket/details/E828)
 [![](https://img.shields.io/badge/📖_How_to_use_DevExpress_Examples-e9f6fc?style=flat-square)](https://docs.devexpress.com/GeneralInformation/403183)
 <!-- default badges end -->
-<!-- default file list -->
-*Files to look at*:
 
-* [Form1.cs](./CS/KeepGroupsExpanded/Form1.cs) (VB: [Form1.vb](./VB/KeepGroupsExpanded/Form1.vb))
-* [Program.cs](./CS/KeepGroupsExpanded/Program.cs) (VB: [Program.vb](./VB/KeepGroupsExpanded/Program.vb))
-<!-- default file list end -->
 # How to keep all the groups expanded
 
+This example automatically expands all group rows on application startup and hides expand/collapse buttons to prevent users from collapsing group rows.
 
-<p>This is the example for the <a href="https://www.devexpress.com/Support/Center/p/A1497">How to keep all the groups expanded</a> article. It demonstrates how to remove collapsing buttons from group rows and prevent end-users from contracting groups.</p>
+The [GroupRowCollapsing](https://docs.devexpress.com/WindowsForms/DevExpress.XtraGrid.Views.Grid.GridView.GroupRowCollapsing) event is handled to prevent users from collapsing group rows:
 
-<br/>
+```csharp
+private void gridView1_GroupRowCollapsing(object sender, DevExpress.XtraGrid.Views.Base.RowAllowEventArgs e) {
+    e.Allow = false;
+}
+```
+
+The [CustomDrawGroupRow](docs.devexpress.com/WindowsForms/DevExpress.XtraGrid.Views.Grid.GridView.CustomDrawGroupRow) event is handled to hide expand/collapse buttons:
+
+```csharp
+private void gridView1_CustomDrawGroupRow(object sender, DevExpress.XtraGrid.Views.Base.RowObjectCustomDrawEventArgs e) {
+    DevExpress.XtraGrid.Views.Grid.ViewInfo.GridGroupRowInfo info;
+    info = e.Info as DevExpress.XtraGrid.Views.Grid.ViewInfo.GridGroupRowInfo;
+    info.ButtonBounds = Rectangle.Empty;
+    info.GroupText = " " + info.GroupText.TrimStart();
+    e.Cache.FillRectangle(e.Appearance.GetBackBrush(e.Cache), e.Bounds);
+    ObjectPainter.DrawObject(e.Cache, e.Painter, e.Info);
+    e.Handled = true;
+}
+```
 
 
+## Files to Review
+
+* [Form1.cs](./CS/KeepGroupsExpanded/Form1.cs) (VB: [Form1.vb](./VB/KeepGroupsExpanded/Form1.vb))
