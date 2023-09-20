@@ -4,7 +4,7 @@
 [![](https://img.shields.io/badge/📖_How_to_use_DevExpress_Examples-e9f6fc?style=flat-square)](https://docs.devexpress.com/GeneralInformation/403183)
 <!-- default badges end -->
 
-# How to keep all the groups expanded
+# WinForms Data Grid - Keep all groups expanded
 
 This example automatically expands all group rows on application startup and hides expand/collapse buttons to prevent users from collapsing group rows.
 
