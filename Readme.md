@@ -16,7 +16,7 @@ private void gridView1_GroupRowCollapsing(object sender, DevExpress.XtraGrid.Vie
 }
 ```
 
-The [CustomDrawGroupRow](docs.devexpress.com/WindowsForms/DevExpress.XtraGrid.Views.Grid.GridView.CustomDrawGroupRow) event is handled to hide expand/collapse buttons:
+The [CustomDrawGroupRow](https://docs.devexpress.com/WindowsForms/DevExpress.XtraGrid.Views.Grid.GridView.CustomDrawGroupRow) event is handled to hide expand/collapse buttons:
 
 ```csharp
 private void gridView1_CustomDrawGroupRow(object sender, DevExpress.XtraGrid.Views.Base.RowObjectCustomDrawEventArgs e) {
